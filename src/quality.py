@@ -144,13 +144,15 @@ class DataLoader:
         logger.info(f"Salvando dataset final em Parquet (Snappy) particionado em '{output_dir}'...")
         os.makedirs(output_dir, exist_ok=True)
 
-        # Persiste usando PyArrow com particionamento estilo Hive (ano=YYYY/mes=MM)
-        # Compressão Snappy 
+        # Persiste usando PyArrow com particionamento estilo Hive (ano=YYYY/mes=MM),
+        # compressão Snappy e existing_data_behavior="delete_matching" para garantir
+        # idempotência (sobrescreve apenas as partições reprocessadas, evitando duplicatas).
         df.to_parquet(
             path=output_dir,
             engine="pyarrow",
             compression="snappy",
             partition_cols=["ano", "mes"],
+            existing_data_behavior="delete_matching",
             index=False
         )
         logger.info("Dataset persistido com sucesso no formato Parquet particionado!")
