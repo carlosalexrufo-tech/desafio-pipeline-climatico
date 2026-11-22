@@ -1,10 +1,13 @@
-import sys
 import logging
-from src.extractors import run_extraction
+import sys
+import duckdb
+from dotenv import load_dotenv
+
+from src.extractors import IBGEExtractor, OpenMeteoExtractor
 from src.transformers import DataTransformer
 from src.quality import DataQualityValidator, DataLoader
 
-# Configuração centralizada de logs do pipeline
+# Configuração centralizada de logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - [%(levelname)s] - %(message)s"
@@ -14,49 +17,90 @@ logger = logging.getLogger(__name__)
 
 def run_pipeline() -> None:
     """
-    Orquestra o pipeline completo ponta a ponta (ETL + Data Quality):
-    1. Extract: Consome APIs do IBGE e Open-Meteo e salva camada Raw (JSON).
-    2. Transform: Desaninha, limpa, deduplica, cruza (JOIN) e calcula Score via DuckDB SQL.
-    3. Quality & Load: Audita regras de governança e persiste em Parquet particionado (Snappy).
+    Orquestrador principal do Pipeline de Engenharia de Dados (FT03).
+    Executa as etapas:
+      1. Ingestão (Extract) -> APIs IBGE e Open-Meteo
+      2. Processamento (Transform) -> DuckDB SQL
+      3. Governança (Data Quality) -> Validação de Regras e Relatório JSON
+      4. Persistência (Load) -> Parquet (Snappy) Particionado (ano/mes)
+      5. Resumo Executivo -> Consulta SQL direta na camada Parquet
     """
-    logger.info("=================================================================")
-    logger.info("INICIANDO PIPELINE SOCIOECONÔMICO E GEOCLIMÁTICO (FT03)")
-    logger.info("=================================================================")
+    logger.info("=" * 65)
+    logger.info("INICIANDO PIPELINE: MONITORAMENTO SOCIOECONÔMICO & CLIMÁTICO")
+    logger.info("=" * 65)
+
+    load_dotenv()
 
     try:
-        # 1. EXTRAÇÃO (Camada Raw)
-        ibge_raw_path, clima_raw_path = run_extraction()
+        # ------------------------------------------------------------------
+        # ETAPA 1: EXTRAÇÃO (INGESTÃO RESILIENTE)
+        # ------------------------------------------------------------------
+        logger.info("[ETAPA 1/4] Extraindo dados das APIs públicas...")
+        ibge_extractor = IBGEExtractor()
+        ibge_data = ibge_extractor.extract()
+        ibge_raw_path = ibge_extractor.save_raw(ibge_data, "data/raw/ibge_raw.json")
 
-        # 2. TRANSFORMAÇÃO & SQL (Camada Silver/Gold)
+        clima_extractor = OpenMeteoExtractor()
+        clima_data = clima_extractor.extract()
+        clima_raw_path = clima_extractor.save_raw(clima_data, "data/raw/clima_raw.json")
+
+        # ------------------------------------------------------------------
+        # ETAPA 2: TRANSFORMAÇÃO E ENRIQUECIMENTO (DUCKDB SQL)
+        # ------------------------------------------------------------------
+        logger.info("[ETAPA 2/4] Processando e cruzando dados via SQL (DuckDB)...")
         transformer = DataTransformer(
-            ibge_path=ibge_raw_path,
-            clima_path=clima_raw_path
+            ibge_raw_path=ibge_raw_path,
+            clima_raw_path=clima_raw_path
         )
-        df_transformado = transformer.transform()
+        df_final = transformer.transform()
 
-        # 3. GOVERNANÇA & DATA QUALITY
-        validator = DataQualityValidator(df_transformado)
-        relatorio_qualidade = validator.run_all_checks(
-            report_path="reports/quality_report.json"
-        )
+        # ------------------------------------------------------------------
+        # ETAPA 3: DATA QUALITY & GOVERNANÇA
+        # ------------------------------------------------------------------
+        logger.info("[ETAPA 3/4] Executando Quality Gate e gerando relatório...")
+        validator = DataQualityValidator(df_final)
+        quality_report = validator.run_all_checks(report_path="reports/quality_report.json")
 
-        # Trava de Segurança (Quality Gate): Só grava no Data Lake se passar em 100% dos testes
-        if relatorio_qualidade["overall_status"] != "PASSED":
-            logger.critical("Pipeline interrompido: Os dados não passaram no Quality Gate!")
+        if quality_report["overall_status"] != "PASSED":
+            logger.critical("ABORTANDO PERSISTÊNCIA: Dataset reprovado no Quality Gate.")
             sys.exit(1)
 
-        # 4. PERSISTÊNCIA OTIMIZADA (Parquet + Snappy + Particionamento ano/mes)
-        DataLoader.save_partitioned_parquet(
-            df=df_transformado,
-            output_dir="data/output"
-        )
+        # ------------------------------------------------------------------
+        # ETAPA 4: PERSISTÊNCIA (PARQUET PARTICIONADO)
+        # ------------------------------------------------------------------
+        logger.info("[ETAPA 4/4] Persistindo dados na camada analítica (Parquet)...")
+        DataLoader.save_partitioned_parquet(df_final, output_dir="data/output")
 
-        logger.info("=================================================================")
-        logger.info("PIPELINE CONCLUÍDO COM SUCESSO!")
-        logger.info("=================================================================")
+        # ------------------------------------------------------------------
+        # RESUMO EXECUTIVO DO CASE (LEITURA DA CAMADA PARQUET)
+        # ------------------------------------------------------------------
+        logger.info("=" * 65)
+        logger.info("RESUMO EXECUTIVO - MUNICÍPIOS EM ALERTA CLIMÁTICO:")
+        df_alertas = duckdb.sql("""
+            SELECT DISTINCT
+                municipio_nome,
+                uf_sigla,
+                data_referencia,
+                temp_maxima_c,
+                precipitacao_acumulada_mm,
+                score_vulnerabilidade,
+                status_alerta_climatico
+            FROM read_parquet('data/output/**/*.parquet', hive_partitioning=true)
+            WHERE status_alerta_climatico != 'NORMAL'
+            ORDER BY data_referencia, score_vulnerabilidade DESC
+        """).df()
 
-    except Exception as exc:
-        logger.critical(f"Erro durante a execução do pipeline: {exc}")
+        if df_alertas.empty:
+            logger.info("Nenhum município em estado de alerta moderado ou crítico no período.")
+        else:
+            print("\n" + df_alertas.to_string(index=False) + "\n")
+
+        logger.info("=" * 65)
+        logger.info("PIPELINE CONCLUÍDO COM SUCESSO! TODOS OS ENTREGÁVEIS GERADOS.")
+        logger.info("=" * 65)
+
+    except Exception as e:
+        logger.critical(f"Falha crítica durante a execução do pipeline: {e}", exc_info=True)
         sys.exit(1)
 
 
