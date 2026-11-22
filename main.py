@@ -1,11 +1,9 @@
-import os
-import json
 import logging
 import sys
 import duckdb
 from dotenv import load_dotenv
 
-from src.extractors import IBGEExtractor, OpenMeteoExtractor
+from src.extractors import run_extraction
 from src.transformers import DataTransformer
 from src.quality import DataQualityValidator, DataLoader
 
@@ -38,34 +36,13 @@ def run_pipeline() -> None:
         # ETAPA 1: EXTRAÇÃO (INGESTÃO RESILIENTE)
         # ------------------------------------------------------------------
         logger.info("[ETAPA 1/4] Extraindo dados das APIs públicas...")
-        os.makedirs("data/raw", exist_ok=True)
-
-        ibge_extractor = IBGEExtractor()
-        ibge_result = ibge_extractor.extract()
-        ibge_raw_path = "data/raw/ibge_raw.json"
-        if isinstance(ibge_result, str) and os.path.exists(ibge_result):
-            ibge_raw_path = ibge_result
-        elif not isinstance(ibge_result, str):
-            with open(ibge_raw_path, "w", encoding="utf-8") as f:
-                json.dump(ibge_result, f, ensure_ascii=False, indent=2)
-
-        clima_extractor = OpenMeteoExtractor()
-        clima_result = clima_extractor.extract()
-        clima_raw_path = "data/raw/clima_raw.json"
-        if isinstance(clima_result, str) and os.path.exists(clima_result):
-            clima_raw_path = clima_result
-        elif not isinstance(clima_result, str):
-            with open(clima_raw_path, "w", encoding="utf-8") as f:
-                json.dump(clima_result, f, ensure_ascii=False, indent=2)
+        ibge_raw_path, clima_raw_path = run_extraction()
 
         # ------------------------------------------------------------------
         # ETAPA 2: TRANSFORMAÇÃO E ENRIQUECIMENTO (DUCKDB SQL)
         # ------------------------------------------------------------------
         logger.info("[ETAPA 2/4] Processando e cruzando dados via SQL (DuckDB)...")
-        transformer = DataTransformer(
-            ibge_raw_path=ibge_raw_path,
-            clima_raw_path=clima_raw_path
-        )
+        transformer = DataTransformer(ibge_raw_path, clima_raw_path)
         df_final = transformer.transform()
 
         # ------------------------------------------------------------------
