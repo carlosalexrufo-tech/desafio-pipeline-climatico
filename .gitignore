@@ -1,4 +1,4 @@
-# Variáveis de ambiente sensíveis (NUNCA subir no GitHub)
+# Variáveis de ambiente sensíveis (Não subir no GitHub)
 .env
 
 # Cache do Python
