@@ -2,6 +2,7 @@
 
 Pipeline resiliente de extração, transformação e disponibilização de dados desenvolvido em **Python** e **SQL (DuckDB)** para cálculo do **Score de Vulnerabilidade Infraestrutural & Climática** nos principais centros urbanos brasileiros.
 
+Link Git: https://github.com/carlosalexrufo-tech/desafio-pipeline-climatico
 ---
 
 ## 1. Problema de Negócio e Objetivo
