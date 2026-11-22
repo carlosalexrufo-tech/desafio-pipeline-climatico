@@ -1,0 +1,542 @@
+[
+  {
+    "id": 1302603,
+    "nome": "Manaus",
+    "microrregiao": {
+      "id": 13007,
+      "nome": "Manaus",
+      "mesorregiao": {
+        "id": 1303,
+        "nome": "Centro Amazonense",
+        "UF": {
+          "id": 13,
+          "sigla": "AM",
+          "nome": "Amazonas",
+          "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 130001,
+      "nome": "Manaus",
+      "regiao-intermediaria": {
+        "id": 1301,
+        "nome": "Manaus",
+        "UF": {
+          "id": 13,
+          "sigla": "AM",
+          "nome": "Amazonas",
+          "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -3.119,
+      "lon": -60.0217,
+      "populacao_estimada": 2063547
+    }
+  },
+  {
+    "id": 1501402,
+    "nome": "Belém",
+    "microrregiao": {
+      "id": 15007,
+      "nome": "Belém",
+      "mesorregiao": {
+        "id": 1503,
+        "nome": "Metropolitana de Belém",
+        "UF": {
+          "id": 15,
+          "sigla": "PA",
+          "nome": "Pará",
+          "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 150001,
+      "nome": "Belém",
+      "regiao-intermediaria": {
+        "id": 1501,
+        "nome": "Belém",
+        "UF": {
+          "id": 15,
+          "sigla": "PA",
+          "nome": "Pará",
+          "regiao": {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -1.4558,
+      "lon": -48.4902,
+      "populacao_estimada": 1303389
+    }
+  },
+  {
+    "id": 2304400,
+    "nome": "Fortaleza",
+    "microrregiao": {
+      "id": 23016,
+      "nome": "Fortaleza",
+      "mesorregiao": {
+        "id": 2303,
+        "nome": "Metropolitana de Fortaleza",
+        "UF": {
+          "id": 23,
+          "sigla": "CE",
+          "nome": "Ceará",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 230001,
+      "nome": "Fortaleza",
+      "regiao-intermediaria": {
+        "id": 2301,
+        "nome": "Fortaleza",
+        "UF": {
+          "id": 23,
+          "sigla": "CE",
+          "nome": "Ceará",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -3.7172,
+      "lon": -38.5433,
+      "populacao_estimada": 2428678
+    }
+  },
+  {
+    "id": 2611606,
+    "nome": "Recife",
+    "microrregiao": {
+      "id": 26017,
+      "nome": "Recife",
+      "mesorregiao": {
+        "id": 2605,
+        "nome": "Metropolitana de Recife",
+        "UF": {
+          "id": 26,
+          "sigla": "PE",
+          "nome": "Pernambuco",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 260001,
+      "nome": "Recife",
+      "regiao-intermediaria": {
+        "id": 2601,
+        "nome": "Recife",
+        "UF": {
+          "id": 26,
+          "sigla": "PE",
+          "nome": "Pernambuco",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -8.0476,
+      "lon": -34.877,
+      "populacao_estimada": 1488920
+    }
+  },
+  {
+    "id": 2927408,
+    "nome": "Salvador",
+    "microrregiao": {
+      "id": 29021,
+      "nome": "Salvador",
+      "mesorregiao": {
+        "id": 2905,
+        "nome": "Metropolitana de Salvador",
+        "UF": {
+          "id": 29,
+          "sigla": "BA",
+          "nome": "Bahia",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 290001,
+      "nome": "Salvador",
+      "regiao-intermediaria": {
+        "id": 2901,
+        "nome": "Salvador",
+        "UF": {
+          "id": 29,
+          "sigla": "BA",
+          "nome": "Bahia",
+          "regiao": {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -12.9714,
+      "lon": -38.5014,
+      "populacao_estimada": 2418005
+    }
+  },
+  {
+    "id": 3106200,
+    "nome": "Belo Horizonte",
+    "microrregiao": {
+      "id": 31030,
+      "nome": "Belo Horizonte",
+      "mesorregiao": {
+        "id": 3107,
+        "nome": "Metropolitana de Belo Horizonte",
+        "UF": {
+          "id": 31,
+          "sigla": "MG",
+          "nome": "Minas Gerais",
+          "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 310001,
+      "nome": "Belo Horizonte",
+      "regiao-intermediaria": {
+        "id": 3101,
+        "nome": "Belo Horizonte",
+        "UF": {
+          "id": 31,
+          "sigla": "MG",
+          "nome": "Minas Gerais",
+          "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -19.9167,
+      "lon": -43.9345,
+      "populacao_estimada": 2315560
+    }
+  },
+  {
+    "id": 3304557,
+    "nome": "Rio de Janeiro",
+    "microrregiao": {
+      "id": 33018,
+      "nome": "Rio de Janeiro",
+      "mesorregiao": {
+        "id": 3306,
+        "nome": "Metropolitana do Rio de Janeiro",
+        "UF": {
+          "id": 33,
+          "sigla": "RJ",
+          "nome": "Rio de Janeiro",
+          "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 330001,
+      "nome": "Rio de Janeiro",
+      "regiao-intermediaria": {
+        "id": 3301,
+        "nome": "Rio de Janeiro",
+        "UF": {
+          "id": 33,
+          "sigla": "RJ",
+          "nome": "Rio de Janeiro",
+          "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -22.9068,
+      "lon": -43.1729,
+      "populacao_estimada": 6211423
+    }
+  },
+  {
+    "id": 3550308,
+    "nome": "São Paulo",
+    "microrregiao": {
+      "id": 35061,
+      "nome": "São Paulo",
+      "mesorregiao": {
+        "id": 3515,
+        "nome": "Metropolitana de São Paulo",
+        "UF": {
+          "id": 35,
+          "sigla": "SP",
+          "nome": "São Paulo",
+          "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 350001,
+      "nome": "São Paulo",
+      "regiao-intermediaria": {
+        "id": 3501,
+        "nome": "São Paulo",
+        "UF": {
+          "id": 35,
+          "sigla": "SP",
+          "nome": "São Paulo",
+          "regiao": {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -23.5505,
+      "lon": -46.6333,
+      "populacao_estimada": 11451245
+    }
+  },
+  {
+    "id": 4106902,
+    "nome": "Curitiba",
+    "microrregiao": {
+      "id": 41037,
+      "nome": "Curitiba",
+      "mesorregiao": {
+        "id": 4110,
+        "nome": "Metropolitana de Curitiba",
+        "UF": {
+          "id": 41,
+          "sigla": "PR",
+          "nome": "Paraná",
+          "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 410001,
+      "nome": "Curitiba",
+      "regiao-intermediaria": {
+        "id": 4101,
+        "nome": "Curitiba",
+        "UF": {
+          "id": 41,
+          "sigla": "PR",
+          "nome": "Paraná",
+          "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -25.4284,
+      "lon": -49.2733,
+      "populacao_estimada": 1773733
+    }
+  },
+  {
+    "id": 4314902,
+    "nome": "Porto Alegre",
+    "microrregiao": {
+      "id": 43026,
+      "nome": "Porto Alegre",
+      "mesorregiao": {
+        "id": 4305,
+        "nome": "Metropolitana de Porto Alegre",
+        "UF": {
+          "id": 43,
+          "sigla": "RS",
+          "nome": "Rio Grande do Sul",
+          "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 430001,
+      "nome": "Porto Alegre",
+      "regiao-intermediaria": {
+        "id": 4301,
+        "nome": "Porto Alegre",
+        "UF": {
+          "id": 43,
+          "sigla": "RS",
+          "nome": "Rio Grande do Sul",
+          "regiao": {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -30.0346,
+      "lon": -51.2177,
+      "populacao_estimada": 1332570
+    }
+  },
+  {
+    "id": 5208707,
+    "nome": "Goiânia",
+    "microrregiao": {
+      "id": 52010,
+      "nome": "Goiânia",
+      "mesorregiao": {
+        "id": 5203,
+        "nome": "Centro Goiano",
+        "UF": {
+          "id": 52,
+          "sigla": "GO",
+          "nome": "Goiás",
+          "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 520001,
+      "nome": "Goiânia",
+      "regiao-intermediaria": {
+        "id": 5201,
+        "nome": "Goiânia",
+        "UF": {
+          "id": 52,
+          "sigla": "GO",
+          "nome": "Goiás",
+          "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -16.6869,
+      "lon": -49.2648,
+      "populacao_estimada": 1437237
+    }
+  },
+  {
+    "id": 5300108,
+    "nome": "Brasília",
+    "microrregiao": {
+      "id": 53001,
+      "nome": "Brasília",
+      "mesorregiao": {
+        "id": 5301,
+        "nome": "Distrito Federal",
+        "UF": {
+          "id": 53,
+          "sigla": "DF",
+          "nome": "Distrito Federal",
+          "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+          }
+        }
+      }
+    },
+    "regiao-imediata": {
+      "id": 530001,
+      "nome": "Distrito Federal",
+      "regiao-intermediaria": {
+        "id": 5301,
+        "nome": "Distrito Federal",
+        "UF": {
+          "id": 53,
+          "sigla": "DF",
+          "nome": "Distrito Federal",
+          "regiao": {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+          }
+        }
+      }
+    },
+    "metadados_geo": {
+      "lat": -15.7975,
+      "lon": -47.8919,
+      "populacao_estimada": 2817068
+    }
+  }
+]

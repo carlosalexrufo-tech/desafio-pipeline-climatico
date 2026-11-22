@@ -1,0 +1,52 @@
+{
+  "execution_timestamp": "2026-11-19T11:22:00.454923",
+  "total_records": 60,
+  "checks": {
+    "schema_validation": {
+      "status": "PASSED",
+      "expected_columns_count": 14,
+      "actual_columns_count": 14,
+      "missing_columns": []
+    },
+    "null_ratio_validation": {
+      "status": "PASSED",
+      "max_allowed_ratio": 0.0,
+      "null_ratio_by_column": {
+        "municipio_id": 0.0,
+        "municipio_nome": 0.0,
+        "uf_sigla": 0.0,
+        "regiao_nome": 0.0,
+        "populacao_estimada": 0.0,
+        "data_referencia": 0.0,
+        "ano": 0.0,
+        "mes": 0.0,
+        "temp_media_c": 0.0,
+        "temp_maxima_c": 0.0,
+        "precipitacao_acumulada_mm": 0.0,
+        "indice_exposicao_hidrica": 0.0,
+        "score_vulnerabilidade": 0.0,
+        "status_alerta_climatico": 0.0
+      },
+      "columns_above_threshold": []
+    },
+    "uniqueness_validation": {
+      "status": "PASSED",
+      "primary_key": [
+        "municipio_id",
+        "data_referencia"
+      ],
+      "duplicate_records_found": 0
+    },
+    "range_validation": {
+      "status": "PASSED",
+      "total_violations": 0,
+      "details": {
+        "temperatura_fora_intervalo (-10 a 55 C)": 0,
+        "precipitacao_negativa (< 0 mm)": 0,
+        "populacao_invalida (<= 0)": 0,
+        "score_fora_escala (0 a 100)": 0
+      }
+    }
+  },
+  "overall_status": "PASSED"
+}
